@@ -25,9 +25,6 @@ class Parser {
 
                 ParsedLine pl = parseLine(l);
                 switch (pl.getType()) {
-                    case BLANK:
-                    case COMMENT:
-                        break;
                     case QUERY_PART:
                         if (tallier.getLastMarker() == null) {
                             throw new ParseException(filename, tallier.getLineNum(), "Expected Name Marker.", pl.getLine());
@@ -43,6 +40,10 @@ class Parser {
                             throw new ParseException(filename, tallier.getLineNum(), "Expected Query Part, Comment, or Blank Line.", pl.getLine());
                         }
                         tallier.setLastMarker(pl.getLine());
+                        break;
+                    case BLANK:
+                    case COMMENT:
+                        default:
                         break;
                 }
 

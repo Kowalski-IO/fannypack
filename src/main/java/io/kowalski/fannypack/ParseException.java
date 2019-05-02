@@ -1,6 +1,6 @@
 package io.kowalski.fannypack;
 
-public class ParseException extends RuntimeException {
+class ParseException extends RuntimeException {
 
     ParseException(String reason, Exception cause) {
         super(reason, cause);

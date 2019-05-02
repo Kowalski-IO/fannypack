@@ -1,16 +1,6 @@
--- name: Potato Salad
-SELECT name, address, potato FROM foodStuffs
+-- name: InventoryList
 
+SELECT * FROM inventory;
 
-WHERE potato = "hello"
-
-
-  -- this is really neat!
-
-ORDER BY name ASC;
-
-
--- name: cunts
--- name: beeeeez
-
-SELECT cunt FROM vagina;
+-- name: InStock
+SELECT * FROM inventory WHERE stock > 0;

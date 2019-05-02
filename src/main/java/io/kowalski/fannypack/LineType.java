@@ -1,6 +1,6 @@
 package io.kowalski.fannypack;
 
-public enum LineType {
+enum LineType {
 
     BLANK,
     COMMENT,

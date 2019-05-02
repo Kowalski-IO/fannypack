@@ -1,0 +1,2 @@
+-- name: I'm a marker
+-- name: followed by another marker which is bad.

@@ -13,7 +13,7 @@ public class FannyPack {
      *
      * @param filenames sql files to parse and include in your fanny pack.
      * @return a map of queries bound to name marker immediately preceding it.
-     * @throws ParseException on the first error found while parsing.
+     * @throws ParseException when an enumerated file cannot be read or parsed
      */
     public static Map<String, String> fill(String... filenames) throws ParseException {
         return Arrays.stream(filenames)
