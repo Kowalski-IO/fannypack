@@ -1,5 +1,8 @@
 package io.kowalski.fannypack;
 
+import lombok.AccessLevel;
+import lombok.NoArgsConstructor;
+
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
@@ -8,6 +11,7 @@ import java.util.Map;
 import java.util.regex.Pattern;
 import java.util.stream.Stream;
 
+@NoArgsConstructor(access = AccessLevel.PRIVATE)
 class Parser {
 
     private static final Pattern MARKER_PATTERN = Pattern.compile("^\\s*--\\s*name\\s*:\\s*(.+)");
@@ -43,7 +47,7 @@ class Parser {
                         break;
                     case BLANK:
                     case COMMENT:
-                        default:
+                    default:
                         break;
                 }
 

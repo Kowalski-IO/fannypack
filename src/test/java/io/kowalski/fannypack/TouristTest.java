@@ -15,6 +15,7 @@ class TouristTest {
 
     private static final String DOUBLE_MARKER = "src/test/resources/unparseable/double_marker.sql";
     private static final String MISSING_MARKER = "src/test/resources/unparseable/missing_marker.sql";
+    private static final String FILE_NOT_FOUND = "src/test/resources/unparseable/iamnothere.sql";
 
     @Test
     void singleQueryTest() {
@@ -71,6 +72,7 @@ class TouristTest {
     void unparseable() {
         Assertions.assertThrows(ParseException.class, () -> FannyPack.fill(DOUBLE_MARKER));
         Assertions.assertThrows(ParseException.class, () -> FannyPack.fill(MISSING_MARKER));
+        Assertions.assertThrows(ParseException.class, () -> FannyPack.fill(FILE_NOT_FOUND));
     }
 
 }

@@ -1,0 +1,8 @@
+language: java
+sudo: false
+install: true
+script: "mvn clean test coveralls:report"
+addons:
+  apt:
+    packages:
+      - oracle-java8-installer
