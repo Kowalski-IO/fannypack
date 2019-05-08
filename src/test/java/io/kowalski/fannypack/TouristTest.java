@@ -19,48 +19,48 @@ class TouristTest {
 
     @Test
     void singleQueryTest() {
-        Map<String, String> fp = FannyPack.fill(SINGLE_QUERY);
+        FannyPack fp = FannyPack.fill(SINGLE_QUERY);
 
         assertNotNull(fp);
         assertEquals(fp.size(), 1);
 
-        assertTrue(fp.containsKey("FakeCustomerQuery"));
+        assertTrue(fp.queryExists("FakeCustomerQuery"));
         assertEquals("SELECT id, name, address, phoneNumber FROM customers WHERE id = 123 ORDER BY name ASC;",
                 fp.get("FakeCustomerQuery"));
     }
 
     @Test
     void multipleQueryTest() {
-        Map<String, String> fp = FannyPack.fill(MULTIPLE_QUERIES);
+        FannyPack fp = FannyPack.fill(MULTIPLE_QUERIES);
 
         assertNotNull(fp);
         assertEquals(fp.size(), 2);
 
-        assertTrue(fp.containsKey("InventoryList"));
+        assertTrue(fp.queryExists("InventoryList"));
         assertEquals("SELECT * FROM inventory;", fp.get("InventoryList"));
 
-        assertTrue(fp.containsKey("InStock"));
+        assertTrue(fp.queryExists("InStock"));
         assertEquals("SELECT * FROM inventory WHERE stock > 0;", fp.get("InStock"));
     }
 
     @Test
     void multipleFilesTest() {
-        Map<String, String> fp = FannyPack.fill(SINGLE_QUERY, MULTIPLE_QUERIES, EXTRA_QUERIES);
+        FannyPack fp = FannyPack.fill(SINGLE_QUERY, MULTIPLE_QUERIES, EXTRA_QUERIES);
 
         assertNotNull(fp);
         assertEquals(fp.size(), 4);
 
-        assertTrue(fp.containsKey("FakeCustomerQuery"));
+        assertTrue(fp.queryExists("FakeCustomerQuery"));
         assertEquals("SELECT id, name, address, phoneNumber FROM customers WHERE id = 123 ORDER BY name ASC;",
                 fp.get("FakeCustomerQuery"));
 
-        assertTrue(fp.containsKey("InventoryList"));
+        assertTrue(fp.queryExists("InventoryList"));
         assertEquals("SELECT * FROM inventory;", fp.get("InventoryList"));
 
-        assertTrue(fp.containsKey("InStock"));
+        assertTrue(fp.queryExists("InStock"));
         assertEquals("SELECT * FROM inventory WHERE stock > 0;", fp.get("InStock"));
 
-        assertTrue(fp.containsKey("LongQuery"));
+        assertTrue(fp.queryExists("LongQuery"));
         assertEquals("SELECT id, username, email_address, password_hash, ip_address, first_name, " +
                         "last_name, address, company FROM users u INNER JOIN orders o ON u.id = orders.purchaser " +
                         "WHERE o.orderedOn > '2018-10-01' AND o.orderedOn < '2019-01-01' AND o.itemCount = 4 " +
