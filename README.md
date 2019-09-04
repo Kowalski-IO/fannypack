@@ -1,6 +1,4 @@
 # fannypack 🇺🇸 (bumbag 🇬🇧)
-[![Coverage Status](https://coveralls.io/repos/github/Kowalski-IO/fannypack/badge.svg)](https://coveralls.io/github/Kowalski-IO/fannypack)
-
 Keep your SQL queries right on your waist!
 
 ### Inlined SQL is a PITA. 👎
