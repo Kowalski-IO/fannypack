@@ -3,11 +3,9 @@ package io.kowalski.fannypack;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
-import java.util.Map;
-
 import static org.junit.jupiter.api.Assertions.*;
 
-class TouristTest {
+class USATouristTest {
 
     private static final String SINGLE_QUERY = "src/test/resources/single.sql";
     private static final String MULTIPLE_QUERIES = "src/test/resources/multiple.sql";

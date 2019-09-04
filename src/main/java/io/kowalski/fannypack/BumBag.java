@@ -10,19 +10,19 @@ import java.util.Map;
 import java.util.stream.Collectors;
 
 @AllArgsConstructor(access = AccessLevel.PRIVATE)
-public class FannyPack {
+public class BumBag {
 
     final Map<String, String> queryMap;
 
     /**
-     * Fill your Fanny Pack!
+     * Fill your Bum Bag!
      *
-     * @param filenames sql files to parse and include in your fanny pack.
+     * @param filenames sql files to parse and include in your bum bag.
      * @return a map of queries bound to name marker immediately preceding it.
      * @throws ParseException when an enumerated file cannot be read or parsed
      */
-    public static FannyPack fill(String... filenames) throws ParseException {
-        return new FannyPack(Arrays.stream(filenames)
+    public static BumBag fill(String... filenames) throws ParseException {
+        return new BumBag(Arrays.stream(filenames)
                 .map(Parser::parseFile)
                 .map(Map::entrySet)
                 .flatMap(Collection::stream)
@@ -30,7 +30,8 @@ public class FannyPack {
     }
 
     /**
-     * Retrieve a query from your FannyPack.
+     * Retrieve a query from your BumBag.
+     *
      * @param name listed in the sql file marker line
      * @return the query if it exists
      */
@@ -39,7 +40,8 @@ public class FannyPack {
     }
 
     /**
-     * Indicates if a particular query name exists in your FannyPack.
+     * Indicates if a particular query name exists in your BumBag.
+     *
      * @param name listed in the sql file marker line
      * @return if it exists
      */
@@ -48,8 +50,9 @@ public class FannyPack {
     }
 
     /**
-     * My FannyPack is bigger than your FannyPack
-     * @return size of your FannyPack
+     * My FannyPack is bigger than your BumBag
+     *
+     * @return size of your BumBag
      */
     public int size() {
         return queryMap.size();
