@@ -9,9 +9,17 @@ Instead organize your queries your own way and grab 'em out of your fannypack wh
 
 ### Getting started
 
-Once you have fannypack in your classpath via your favorite method of choice, do the following:
+0. Add the fannypack dependency to your POM file.
 
-1. Get that inlined SQL out of your code and into some SQL files.
+```
+<dependency>
+  <groupId>io.kowalski</groupId>
+  <artifactId>fannypack</artifactId>
+  <version>1.0</version>
+</dependency>
+```
+
+1. Rip out all that inlined SQL and organize it sanely in a good old-fashioned SQL file.
 2. Before each query in your file, add a comment that looks like this:
 
 ```SQL
@@ -30,7 +38,7 @@ FannyPack supports multiple queries per file, just label them with a comment lik
 Additionally, you can have comments, multi-line queries and placeholders just as you'd expect.
 
 ```SQL
--- name: LongFakeUserQuery
+-- name: LongFakeUserOrderQuery
 
 SELECT
   id,
@@ -65,7 +73,7 @@ var fp = FannyPack.fill("src/test/resources/queries.sql");
 4. Grab the query out of your pack and use it!
 
 ```Java
-var q = fp.get("LongFakeUserQuery");
+var q = fp.get("LongFakeUserOrderQuery");
 ```
 
 ### Caveats
