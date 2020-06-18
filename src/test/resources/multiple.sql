@@ -1,5 +1,4 @@
 -- name: InventoryList
-
 SELECT * FROM inventory;
 
 -- name: InStock

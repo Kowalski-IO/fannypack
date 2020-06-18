@@ -9,6 +9,9 @@ class Tallier {
     private int lineNum;
 
     @Setter
+    private boolean inBlockComment;
+
+    @Setter
     private String lastMarker;
 
     @Setter

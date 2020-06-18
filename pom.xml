@@ -6,7 +6,7 @@
 
     <groupId>io.kowalski</groupId>
     <artifactId>fannypack</artifactId>
-    <version>1.0</version>
+    <version>1.1.0</version>
 
     <description>Keep your SQL queries right on your waist!</description>
 
@@ -33,13 +33,12 @@
         <maven.compiler.source>${java.version}</maven.compiler.source>
         <maven.compiler.target>${java.version}</maven.compiler.target>
 
-        <lombok.version>1.18.4</lombok.version>
-        <junit.version>5.4.2</junit.version>
+        <lombok.version>1.18.12</lombok.version>
+        <junit.version>5.6.2</junit.version>
 
-        <maven.compiler.plugin.version>3.8.0</maven.compiler.plugin.version>
-        <maven-surefire-plugin.version>3.0.0-M3</maven-surefire-plugin.version>
-        <coveralls-plugin.version>4.3.0</coveralls-plugin.version>
-        <jacoco.version>0.8.3</jacoco.version>
+        <maven.compiler.plugin.version>3.8.1</maven.compiler.plugin.version>
+        <maven-surefire-plugin.version>3.0.0-M4</maven-surefire-plugin.version>
+        <jacoco.version>0.8.5</jacoco.version>
     </properties>
 
     <dependencies>
@@ -79,12 +78,6 @@
             <plugin>
                 <artifactId>maven-surefire-plugin</artifactId>
                 <version>${maven-surefire-plugin.version}</version>
-            </plugin>
-
-            <plugin>
-                <groupId>org.eluder.coveralls</groupId>
-                <artifactId>coveralls-maven-plugin</artifactId>
-                <version>${coveralls-plugin.version}</version>
             </plugin>
 
             <plugin>

@@ -16,6 +16,10 @@ class Parser {
 
     private static final Pattern MARKER_PATTERN = Pattern.compile("^\\s*--\\s*name\\s*:\\s*(.+)");
     private static final Pattern COMMENT_PATTERN = Pattern.compile("^\\s*--\\s*(.+)");
+
+    private static final Pattern BLOCK_COMMENT_START = Pattern.compile("([/][*])");
+    private static final Pattern BLOCK_COMMENT_END = Pattern.compile("([*][/])");
+
     private static final String EMPTY_STRING = "";
 
     static Map<String, String> parseFile(final String filename) {
@@ -30,8 +34,10 @@ class Parser {
                 ParsedLine pl = parseLine(l);
                 switch (pl.getType()) {
                     case QUERY_PART:
-                        if (tallier.getLastMarker() == null) {
-                            throw new ParseException(filename, tallier.getLineNum(), "Expected Name Marker.", pl.getLine());
+                        if (tallier.isInBlockComment()) {
+                            break;
+                        } else if (tallier.getLastMarker() == null) {
+                            throw new ParseException(filename, tallier.getLineNum(), "Expected Name Marker, Comment or Blank Line.", pl.getLine());
                         } else if (queryMap.containsKey(tallier.getLastMarker())) {
                             String current = queryMap.get(tallier.getLastMarker());
                             queryMap.put(tallier.getLastMarker(), current.concat(" ").concat(pl.getLine()));
@@ -44,6 +50,12 @@ class Parser {
                             throw new ParseException(filename, tallier.getLineNum(), "Expected Query Part, Comment, or Blank Line.", pl.getLine());
                         }
                         tallier.setLastMarker(pl.getLine());
+                        break;
+                    case BLOCK_COMMENT_START:
+                        tallier.setInBlockComment(true);
+                        break;
+                    case BLOCK_COMMENT_END:
+                        tallier.setInBlockComment(false);
                         break;
                     case BLANK:
                     case COMMENT:
@@ -67,6 +79,10 @@ class Parser {
             return new ParsedLine(LineType.MARKER, line.substring(line.indexOf(":") + 1).trim());
         } else if (COMMENT_PATTERN.matcher(line).matches()) {
             return new ParsedLine(LineType.COMMENT, COMMENT_PATTERN.matcher(line).replaceAll(EMPTY_STRING).trim());
+        } else if (BLOCK_COMMENT_START.matcher(line).find()) {
+            return new ParsedLine(LineType.BLOCK_COMMENT_START, BLOCK_COMMENT_START.matcher(line).replaceAll(EMPTY_STRING).trim());
+        } else if (BLOCK_COMMENT_END.matcher(line).find()) {
+            return new ParsedLine(LineType.BLOCK_COMMENT_END, BLOCK_COMMENT_END.matcher(line).replaceAll(EMPTY_STRING).trim());
         }
 
         return new ParsedLine(LineType.QUERY_PART, line.trim());

@@ -10,6 +10,7 @@ class UKTouristTest {
     private static final String SINGLE_QUERY = "src/test/resources/single.sql";
     private static final String MULTIPLE_QUERIES = "src/test/resources/multiple.sql";
     private static final String EXTRA_QUERIES = "src/test/resources/extra.sql";
+    private static final String COMMENT_FEST = "src/test/resources/comment_fest.sql";
 
     private static final String DOUBLE_MARKER = "src/test/resources/unparseable/double_marker.sql";
     private static final String MISSING_MARKER = "src/test/resources/unparseable/missing_marker.sql";
@@ -46,7 +47,7 @@ class UKTouristTest {
         BumBag bb = BumBag.fill(SINGLE_QUERY, MULTIPLE_QUERIES, EXTRA_QUERIES);
 
         assertNotNull(bb);
-        assertEquals(bb.size(), 4);
+        assertEquals(bb.size(), 5);
 
         assertTrue(bb.queryExists("FakeCustomerQuery"));
         assertEquals("SELECT id, name, address, phoneNumber FROM customers WHERE id = 123 ORDER BY name ASC;",
@@ -64,6 +65,17 @@ class UKTouristTest {
                         "WHERE o.orderedOn > '2018-10-01' AND o.orderedOn < '2019-01-01' AND o.itemCount = 4 " +
                         "ORDER BY o.OrderedOn DESC, u.last_name ASC;",
                 bb.get("LongQuery"));
+    }
+
+    @Test
+    void commentFest() {
+        FannyPack fp = FannyPack.fill(COMMENT_FEST);
+
+        assertNotNull(fp);
+        assertEquals(fp.size(), 1);
+
+        assertTrue(fp.queryExists("SelectTest"));
+        assertEquals("select * from test;", fp.get("SelectTest"));
     }
 
     @Test

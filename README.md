@@ -15,7 +15,7 @@ Instead organize your queries your own way and grab 'em out of your fannypack wh
 <dependency>
   <groupId>io.kowalski</groupId>
   <artifactId>fannypack</artifactId>
-  <version>1.0</version>
+  <version>1.1.0</version>
 </dependency>
 ```
 
@@ -26,7 +26,9 @@ Instead organize your queries your own way and grab 'em out of your fannypack wh
 -- name: QueryNameHere
 ```
 
-So for a super simplistic inventory query your file will look like this:
+This library calls this type of comment a ```Name Marker```. You will use this name marker to retreive the query when your program requires it.
+
+With this in mind, a simplistic inventory query will look like this:
 
 ```SQL
 -- name: DemoInventoryQuery
