@@ -6,7 +6,7 @@
 
     <groupId>io.kowalski</groupId>
     <artifactId>fannypack</artifactId>
-    <version>1.1.0</version>
+    <version>1.2.0</version>
 
     <description>Keep your SQL queries right on your waist!</description>
 
